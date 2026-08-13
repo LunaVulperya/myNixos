@@ -14,6 +14,7 @@
         self.homeModules.dolphin
         self.homeModules.noctalia
         self.homeModules.git
+        self.homeModeules.fastfetch
       ];
       home.stateVersion = "26.05";
 

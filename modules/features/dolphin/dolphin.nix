@@ -20,82 +20,26 @@
         qtstyleplugin-kvantum
       ];
 
+      xdg.configFile."menus/applications.menu".source =
+        "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
+      home.activation.rebuildKSycoca = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
+      '';
+
       # Qt platform integration so Dolphin (running outside a Plasma session
       # under niri) actually picks up a KDE-style theme instead of raw Qt defaults
-      qt = {
-        enable = true;
-        platformTheme.name = "kde";
-        style.name = "breeze-dark";
-      };
+     # qt = {
+     #   enable = true;
+     #  platformTheme.name = "kde";
+     #   style.name = "breeze-dark";
+     # };
 
       # Custom KDE color scheme generated from your gruvbox palette,
       # installed where Dolphin/Qt looks for named schemes
-      xdg.dataFile."color-schemes/Gruvbox.colors".text = ''
-        [ColorEffects:Disabled]
-        Color=56,56,56
-        ColorAmount=0
-        ColorEffect=0
-        ContrastAmount=0.65
-        ContrastEffect=1
-        IntensityAmount=0.1
-        IntensityEffect=2
 
-        [ColorEffects:Inactive]
-        ChangeSelectionColor=true
-        Color=112,111,110
-        ColorAmount=0.025
-        ColorEffect=2
-        ContrastAmount=0.1
-        ContrastEffect=2
-        Enable=false
-        IntensityAmount=0
-        IntensityEffect=0
-
-        [Colors:Button]
-        BackgroundNormal=${c.base01}
-        ForegroundNormal=${c.base05}
-        DecorationFocus=${c.base09}
-        DecorationHover=${c.base0A}
-
-        [Colors:Selection]
-        BackgroundNormal=${c.base09}
-        ForegroundNormal=${c.base00}
-
-        [Colors:View]
-        BackgroundNormal=${c.base00}
-        ForegroundNormal=${c.base05}
-        ForegroundInactive=${c.base03}
-        ForegroundLink=${c.base0D}
-        ForegroundVisited=${c.base0E}
-        ForegroundNegative=${c.base08}
-        ForegroundPositive=${c.base0B}
-        ForegroundNeutral=${c.base0A}
-
-        [Colors:Window]
-        BackgroundNormal=${c.base01}
-        ForegroundNormal=${c.base05}
-        ForegroundInactive=${c.base03}
-
-        [Colors:Tooltip]
-        BackgroundNormal=${c.base01}
-        ForegroundNormal=${c.base06}
-
-        [General]
-        ColorScheme=Gruvbox
-        Name=Gruvbox
-        shadeSortColumn=true
-
-        [KDE]
-        contrast=4
-      '';
 
       # Tell Dolphin/Qt apps to actually use this scheme
-      xdg.configFile."kdeglobals".text = ''
-        [General]
-        ColorScheme=Gruvbox
 
-        [Icons]
-        Theme=breeze-dark
-      '';
     };
 }

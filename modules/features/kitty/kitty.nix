@@ -15,7 +15,6 @@
         # transparency + native compositor blur (kitty 0.46+, niri implements
         # ext-background-effect, so this "just works" on your niri setup)
         background_opacity = "0.75";
-        background_blur = 1;
         dynamic_background_opacity = true;
       };
     };

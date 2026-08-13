@@ -19,6 +19,7 @@
         set -g fish_color_comment         brblack
 
         function fish_greeting
+          fastfetch
           set -l user (whoami)
           set -l host (hostname)
           set_color magenta --bold

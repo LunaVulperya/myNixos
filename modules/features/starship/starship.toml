@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:surface0)\
+[Г](fg:surface0)\
 $os\
 $username\
 [](bg:surface1 fg:surface0)\

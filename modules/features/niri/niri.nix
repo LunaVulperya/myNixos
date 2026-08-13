@@ -74,13 +74,13 @@
 
           "Mod+Left".focus-column-left = {};
           "Mod+Right".focus-column-right = {};
-          "Mod+Up".focus-window-up = {};
-          "Mod+Down".focus-window-down = {};
+          "Mod+Up".focus-window-up-or-to-workspace-up = {};
+          "Mod+Down".focus-window-down-or-to-workspace-down = {};
 
           "Mod+Shift+H".move-column-left = {};
           "Mod+Shift+L".move-column-right = {};
-          "Mod+Shift+K".move-window-up = {};
-          "Mod+Shift+J".move-window-down = {};
+          "Mod+Shift+K".move-window-up-or-to-workspace-up = {};
+          "Mod+Shift+J".move-window-down-or-to-workspace-down = {};
 
           # --- Workspaces ---
           "Mod+1".focus-workspace = "w0";
@@ -181,7 +181,7 @@
 
           focus-ring = {
             width = 2;
-            active-color = "#${self.themeNoHash.base09}";
+            active-color = "#b50497";
           };
         };
 

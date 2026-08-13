@@ -1,8 +1,5 @@
 # modules/features/dolphin/dolphin.nix
 { self, ... }: {
-  # system-level: Dolphin needs the same trash/mount/polkit plumbing as Thunar.
-  # If you're keeping Thunar too, this duplicates thunar.nix's system module —
-  # NixOS merges them fine, but you could drop one if you only want one file manager.
   flake.nixosModules.dolphin = { ... }: {
     services.gvfs.enable = true;
     services.udisks2.enable = true;
@@ -11,13 +8,28 @@
 
   flake.homeModules.dolphin = { pkgs, config, lib, ... }:
     let
-      c = self.themeNoHash; # your gruvbox base16 palette from theme.nix
+      c = self.themeNoHash;
+
+      # Wrap dolphin so KDE platform theming only applies to this process,
+      # not the whole niri/Noctalia session.
+      dolphin-kde = pkgs.symlinkJoin {
+        name = "dolphin-kde-wrapped";
+        paths = [ pkgs.kdePackages.dolphin ];
+        buildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/dolphin \
+            --set QT_QPA_PLATFORMTHEME kde \
+            --set QT_STYLE_OVERRIDE breeze \
+            --set QT_QUICK_CONTROLS_STYLE org.kde.desktop
+        '';
+      };
     in {
       home.packages = with pkgs.kdePackages; [
-        dolphin
-        breeze-icons     # icon theme Dolphin expects to find
-        kio-extras       # trash://, network://, thumbnails, etc.
-        qtstyleplugin-kvantum
+        dolphin-kde
+        breeze          # provides the BreezeDark color scheme file
+        breeze-icons
+        kio-extras      # trash://, network://, thumbnails, etc.
+        knewstuff       # fixes "org.kde.newstuff is not installed" QML error
       ];
 
       xdg.configFile."menus/applications.menu".source =
@@ -27,19 +39,19 @@
         $DRY_RUN_CMD ${pkgs.kdePackages.kservice}/bin/kbuildsycoca6 --noincremental
       '';
 
-      # Qt platform integration so Dolphin (running outside a Plasma session
-      # under niri) actually picks up a KDE-style theme instead of raw Qt defaults
-     # qt = {
-     #   enable = true;
-     #  platformTheme.name = "kde";
-     #   style.name = "breeze-dark";
-     # };
+      # Tell KDE apps (Dolphin included) which color scheme to use
+      xdg.configFile."kdeglobals".text = ''
+        [General]
+        ColorScheme=BreezeDark
 
-      # Custom KDE color scheme generated from your gruvbox palette,
-      # installed where Dolphin/Qt looks for named schemes
-
-
-      # Tell Dolphin/Qt apps to actually use this scheme
-
+        [ColorEffects:Disabled]
+        Color=56,56,56
+        ColorAmount=0
+        ColorEffect=0
+        ContrastAmount=0
+        ContrastEffect=0
+        IntensityAmount=0
+        IntensityEffect=0
+      '';
     };
 }

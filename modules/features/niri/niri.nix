@@ -26,7 +26,8 @@
     };
     config = {
       settings = let
-        noctaliaExe = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.myNoctalia;
+        #noctaliaExe = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.myNoctalia;
+        noctaliaExe = "noctalia";  # provided on PATH by inputs.noctalia's home-manager module now
       in {
         prefer-no-csd = {};
 
@@ -212,7 +213,7 @@
           lib.getExe config.pkgs.xwayland-satellite;
 
         spawn-at-startup =
-          [ noctaliaExe ];
+          [ noctaliaExe (lib.getExe' pkgs.kdePackages.kded "kded6") ];
       };
     };
   };

@@ -1,5 +1,4 @@
 {
-  {
   "settingsVersion": 59,
   "bar": {
     "barType": "floating",
@@ -701,5 +700,4 @@
       }
     ]
   }
-}
 }

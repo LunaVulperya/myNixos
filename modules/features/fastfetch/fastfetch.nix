@@ -1,6 +1,6 @@
 # modules/features/fastfetch/fastfetch.nix
 { ... }: {
-  flake.homeModules.fastfetch = { pkgs, ... }: {
+  flake.homeModules.fastfetch = { pkgs, config, ... }: {
     home.packages = [ pkgs.fastfetch ];
 
     # Symlinks the whole ./pngs directory into ~/.config/fastfetch/pngs

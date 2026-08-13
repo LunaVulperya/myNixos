@@ -9,7 +9,7 @@
     security.polkit.enable = true;
   };
 
-  flake.homeModules.dolphin = { pkgs, config, ... }:
+  flake.homeModules.dolphin = { pkgs, config, lib, ... }:
     let
       c = self.themeNoHash; # your gruvbox base16 palette from theme.nix
     in {

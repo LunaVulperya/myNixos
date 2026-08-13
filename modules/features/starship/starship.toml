@@ -1,30 +1,79 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
+[](fg:surface0)\
+$os\
+$username\
+[](bg:surface1 fg:surface0)\
 $directory\
+[](bg:surface2 fg:surface1)\
 $git_branch\
 $git_status\
+[](fg:surface2)\
 $fill\
 $cmd_duration\
-$line_break\
+$time
 $character"""
 
+palette = "lilac"
+
+[palettes.lilac]
+surface0   = "#2a2140"
+surface1   = "#4a3b6b"
+surface2   = "#6d5b96"
+lilac      = "#c4a7ff"
+pink       = "#e6a6d0"
+text       = "#e8e2f5"
+subtext    = "#a99fc2"
+red        = "#f38ba8"
+green      = "#a6e3a1"
+
+[os]
+disabled = false
+style = "bg:surface0 fg:lilac"
+format = "[ $symbol ]($style)"
+
+[os.symbols]
+NixOS = ""
+Linux = ""
+
+[username]
+style_user = "bg:surface0 fg:text"
+style_root = "bg:surface0 fg:red"
+format = "[$user]($style)"
+show_always = true
+
 [directory]
+style = "bg:surface1 fg:text"
+format = "[ 󰉋 $path ]($style)"
 truncation_length = 3
-style = "bold cyan"
+truncate_to_repo = true
 
 [git_branch]
-symbol = " "
-style = "bold purple"
+symbol = ""
+style = "bg:surface2 fg:text"
+format = "[ $symbol $branch ]($style)"
 
 [git_status]
-style = "bold red"
+style = "bg:surface2 fg:pink"
+format = "[$all_status$ahead_behind ]($style)"
 
 [fill]
 symbol = " "
+style = "fg:subtext"
 
 [cmd_duration]
 min_time = 500
-format = "took [$duration]($style) "
+style = "fg:subtext"
+format = "[  $duration]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:subtext"
+format = "[ $time ]($style)"
 
 [character]
-success_symbol = "[❯](bold green)"
+success_symbol = "[❯](bold lilac)"
 error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"

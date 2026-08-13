@@ -4,9 +4,9 @@ format = """
 [Г](fg:surface0)\
 $os\
 $username\
-[](bg:surface1 fg:surface0)\
+[│](bg:surface1 fg:surface0)\
 $directory\
-[](bg:surface2 fg:surface1)\
+[│](bg:surface2 fg:surface1)\
 $git_branch\
 $git_status\
 [](fg:surface2)\
@@ -74,6 +74,6 @@ style = "fg:subtext"
 format = "[ $time ]($style)"
 
 [character]
-success_symbol = "[❯](bold lilac)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
+success_symbol = "[└](bold lilac)"
+error_symbol = "[└](bold red)"
+vimcmd_symbol = "[└](bold green)"

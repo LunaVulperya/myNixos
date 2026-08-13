@@ -198,6 +198,21 @@
           }
         ];
 
+        outputs = {
+          "HDMI-A-1" = {
+            mode = {
+              width = 1920;
+              height = 1080;
+              refresh = 74.973;   # match this exactly to what `niri msg outputs` lists
+            };
+          };
+        };
+
+        cursor = {
+          xcursor-theme = "kuro_cursor"
+          xcursor-size = "32"
+        }
+
         # niri needs an explicit layer-rule to actually blur behind Noctalia's
         # surfaces — Noctalia's own transparency_mode = "glass" only makes
         # them translucent, it can't force the compositor to blur on its own.

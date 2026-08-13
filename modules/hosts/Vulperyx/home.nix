@@ -15,6 +15,7 @@
         self.homeModules.noctalia
         self.homeModules.git
         self.homeModules.fastfetch
+        self.homeModules.cursor
       ];
       home.stateVersion = "26.05";
 

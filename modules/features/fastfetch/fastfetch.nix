@@ -12,10 +12,11 @@
         "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
 
         logo = {
+          #type = "kitty-direct";
           #Random logos
           # source = ''$(find "''${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/pngs/" -name "*.png" | shuf -n 1)'';
           source = ''${config.xdg.configHome}/fastfetch/pngs/main_logo.png'';
-
+          width = 32;
           height = 18;
         };
 

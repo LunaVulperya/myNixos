@@ -74,8 +74,13 @@
 
           "Mod+Left".focus-column-left = {};
           "Mod+Right".focus-column-right = {};
-          "Mod+Up".focus-window-up-or-to-workspace-up = {};
-          "Mod+Down".focus-window-down-or-to-workspace-down = {};
+          "Mod+Up".focus-window-or-workspace-up = {};
+          "Mod+Down".focus-window-or-workspace-down = {};
+
+          "Mod+Shift+Left".move-column-left = {};
+          "Mod+Shift+Right".move-column-right = {};
+          "Mod+Shift+Up".move-window-up-or-to-workspace-up = {};
+          "Mod+Shift+Down".move-window-down-or-to-workspace-down = {};
 
           "Mod+Shift+H".move-column-left = {};
           "Mod+Shift+L".move-column-right = {};

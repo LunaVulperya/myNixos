@@ -194,6 +194,25 @@
           }
         ];
 
+        # niri needs an explicit layer-rule to actually blur behind Noctalia's
+        # surfaces — Noctalia's own transparency_mode = "glass" only makes
+        # them translucent, it can't force the compositor to blur on its own.
+        # Verify the real namespace strings with `niri msg layers` once
+        # Noctalia is running; this regex is a best guess, not confirmed
+        # against your exact package version.
+
+        layer-rules = [
+          {
+            matches = [
+              { namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"; }
+            ];
+            background-effect = {
+              blur = true;
+            };
+            place-within-backdrop = true;
+          }
+        ];
+
         workspaces = let
           settings = {layout.gaps = 5;};
         in {

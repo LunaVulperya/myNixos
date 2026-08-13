@@ -18,7 +18,7 @@
       # JSON export sitting in noctalia.json — that file won't map onto
       # this cleanly. Start empty (defaults) and rebuild settings against:
       # https://docs.noctalia.dev/v5/
-      settings = { };
+      settings = builtins.fromTOML (builtins.readFile ./noctalia-config.toml);
       #outOfStoreConfig = "/home/luna/.config/noctalia";
     };
   };

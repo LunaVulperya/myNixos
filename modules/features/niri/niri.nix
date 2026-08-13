@@ -211,7 +211,7 @@
         cursor = {
           xcursor-theme = "kuro_cursor";
           xcursor-size = "32";
-        }
+        };
 
         # niri needs an explicit layer-rule to actually blur behind Noctalia's
         # surfaces — Noctalia's own transparency_mode = "glass" only makes

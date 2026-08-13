@@ -38,8 +38,7 @@
           keyboard = {
             xkb = {
               layout = "br";
-              variant = "nodeadkeys";
-              options = "caps:escape";
+              variant = "abnt2";
             };
             repeat-rate = 40;
             repeat-delay = 250;

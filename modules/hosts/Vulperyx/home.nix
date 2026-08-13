@@ -11,7 +11,9 @@
         self.homeModules.kitty
         self.homeModules.fish
         self.homeModules.starship
-        self.homeModules.thunar
+        self.homeModules.dolphin
+        self.homeModules.noctalia
+        self.homeModules.git
       ];
       home.stateVersion = "26.05";
 
@@ -19,11 +21,11 @@
         # add user-level packages here
       ];
 
-      programs.git = {
-        enable = true;
-        userName = "Luna Vulperya";
-        userEmail = "lunavulperya@gmail.com";
-      };
+      #programs.git = {
+      #  enable = true;
+      #  userName = "Luna Vulperya";
+      #  userEmail = "lunavulperya@gmail.com";
+      #};
     };
   };
 }

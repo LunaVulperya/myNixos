@@ -209,8 +209,8 @@
         };
 
         cursor = {
-          xcursor-theme = "kuro_cursor"
-          xcursor-size = "32"
+          xcursor-theme = "kuro_cursor";
+          xcursor-size = "32";
         }
 
         # niri needs an explicit layer-rule to actually blur behind Noctalia's

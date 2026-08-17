@@ -11,7 +11,7 @@
       self.nixosModules.VulperyxHardware
       self.nixosModules.VulperyxHomeManager
       self.nixosModules.hosts-blocklist
-      flake.nixosModules.docker
+      self.nixosModules.docker
       self.nixosModules.niri
       self.nixosModules.fish
     ];

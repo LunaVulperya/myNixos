@@ -199,8 +199,14 @@
         ];
 
         outputs = {
+          "DP-1" = {
+            mode = "1920x1080@143.998";
+            focus-at-startup = _: {};
+            position = _: { props = { x = 0; y = 0; }; };
+          };
           "HDMI-A-1" = {
             mode = "1920x1080@74.973";
+            position = _: { props = { x = -1920; y = 0; }; };
           };
         };
 

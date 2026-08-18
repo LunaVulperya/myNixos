@@ -14,6 +14,7 @@
       self.nixosModules.docker
       self.nixosModules.niri
       self.nixosModules.fish
+      self.nixosModules.grubtheme
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

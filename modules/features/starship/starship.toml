@@ -15,14 +15,15 @@ palette = "purpleFlames"
 
 add_newline = true
 
-[palettes.purpleFlames]
-red        = "#ff003c"
-red_dim    = "#7a001d"
-violet     = "#b026ff"
-violet_dim = "#2e1065"
+[palettes.cyberpunk_rc]
+red        = "#ff0044"
+red_dim    = "#5c0015"
+violet     = "#a600ff"
+violet_dim = "#1a0530"
 purple     = "#c77dff"
-magenta    = "#ff2fd6"
-border     = "#1a0b2e"
+magenta    = "#ff00c8"
+flash      = "#f2e9ff"
+border     = "#000000"
 muted      = "#4a3b6b"
 
 [username]
@@ -62,13 +63,13 @@ deleted    = '✗${count}'
 [cmd_duration]
 min_time = 1000
 format = ' [${duration}]($style)'
-style = 'muted'
+style = 'bold flash'
 
 [time]
 disabled = false
 time_format = '%H:%M'
 format = ' [$time]($style)'
-style = 'bold violet_dim'
+style = 'bold flash'
 
 [character]
 success_symbol = '[ ➤](bold violet)'

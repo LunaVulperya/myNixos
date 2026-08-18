@@ -1,79 +1,98 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[Г](fg:surface0)\
-$os\
+[┌──](bold border)\
 $username\
-[│](bg:surface1 fg:surface0)\
+$hostname\
 $directory\
-[│](bg:surface2 fg:surface1)\
 $git_branch\
 $git_status\
-[](fg:surface2)\
-$fill\
 $cmd_duration\
 $time
-$character"""
+[└─](bold border)$character """
 
-palette = "lilac"
+palette = "cyberpunk_rc"
 
-[palettes.lilac]
-surface0   = "#2a2140"
-surface1   = "#4a3b6b"
-surface2   = "#6d5b96"
-lilac      = "#c4a7ff"
-pink       = "#e6a6d0"
-text       = "#e8e2f5"
-subtext    = "#a99fc2"
-red        = "#f38ba8"
-green      = "#a6e3a1"
+add_newline = true
 
-[os]
-disabled = false
-style = "bg:surface0 fg:lilac"
-format = "[ $symbol ]($style)"
-
-[os.symbols]
-NixOS = ""
-Linux = ""
+[palettes.cyberpunk_rc]
+red       = "#e3000f"
+red_dim   = "#8a0010"
+violet    = "#7c3aed"
+violet_dim = "#4c1d95"
+purple    = "#a855f7"
+magenta   = "#d926e0"
+border    = "#5b21b6"
+muted     = "#6b5b8f"
 
 [username]
-style_user = "bg:surface0 fg:text"
-style_root = "bg:surface0 fg:red"
-format = "[$user]($style)"
 show_always = true
+format = '[$user]($style)'
+style_user = 'bold magenta'
+style_root = 'bold red'
+
+[hostname]
+ssh_only = false
+format = '[@$hostname]($style)'
+style = 'purple'
 
 [directory]
-style = "bg:surface1 fg:text"
-format = "[ 󰉋 $path ]($style)"
+format = ' [$path]($style)'
+style = 'bold violet'
 truncation_length = 3
-truncate_to_repo = true
+truncation_symbol = '…/'
+home_symbol = '~'
 
 [git_branch]
-symbol = ""
-style = "bg:surface2 fg:text"
-format = "[ $symbol $branch ]($style)"
+symbol = ' ⎇ '
+format = '[$symbol$branch]($style)'
+style = 'bold magenta'
 
 [git_status]
-style = "bg:surface2 fg:pink"
-format = "[$all_status$ahead_behind ]($style)"
+format = ' [$conflicted](bold red)[$deleted](bold red)[$modified](purple)[$staged](magenta)[$untracked](violet)[$ahead_behind](muted)'
 
-[fill]
-symbol = " "
-style = "fg:subtext"
+conflicted = '⚡'
+ahead      = '⇡${count}'
+behind     = '⇣${count}'
+modified   = '!${count}'
+untracked  = '?${count}'
+staged     = '+${count}'
+deleted    = '✗${count}'
 
 [cmd_duration]
-min_time = 500
-style = "fg:subtext"
-format = "[  $duration]($style) "
+min_time = 1000
+format = ' [${duration}]($style)'
+style = 'muted'
 
 [time]
 disabled = false
-time_format = "%H:%M"
-style = "fg:subtext"
-format = "[ $time ]($style)"
+time_format = '%H:%M'
+format = ' [$time]($style)'
+style = 'bold violet_dim'
 
 [character]
-success_symbol = "[└](bold lilac)"
-error_symbol = "[└](bold red)"
-vimcmd_symbol = "[└](bold green)"
+success_symbol = '[ ➤](bold violet)'
+error_symbol   = '[ ➤](bold red)'
+vimcmd_symbol  = '[◆](bold red)'
+
+[python]
+disabled = false
+detect_extensions = ["py"]
+
+[nodejs]
+disabled = false
+detect_extensions = ["js", "ts", "tsx", "mjs"]
+
+[rust]
+disabled = false
+detect_extensions = ["rs"]
+
+[java]
+disabled = false
+detect_extensions = ["java"]
+
+[docker_context]
+disabled = true
+
+[os]
+disabled = true

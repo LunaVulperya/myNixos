@@ -15,7 +15,7 @@ palette = "purpleFlames"
 
 add_newline = true
 
-[palettes.cyberpunk_rc]
+[palettes.purpleFlames]
 red        = "#ff0044"
 red_dim    = "#5c0015"
 violet     = "#a600ff"

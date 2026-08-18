@@ -23,7 +23,7 @@ violet_dim = "#1a0530"
 purple     = "#c77dff"
 magenta    = "#ff00c8"
 flash      = "#f2e9ff"
-border     = "#000000"
+border     = "#ff00c8"
 muted      = "#4a3b6b"
 
 [username]

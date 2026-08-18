@@ -11,19 +11,19 @@ $cmd_duration\
 $time
 [└─](bold border)$character """
 
-palette = "cyberpunk_rc"
+palette = "purpleFlames"
 
 add_newline = true
 
-[palettes.cyberpunk_rc]
-red       = "#e3000f"
-red_dim   = "#8a0010"
-violet    = "#7c3aed"
-violet_dim = "#4c1d95"
-purple    = "#a855f7"
-magenta   = "#d926e0"
-border    = "#5b21b6"
-muted     = "#6b5b8f"
+[palettes.purpleFlames]
+red        = "#ff003c"
+red_dim    = "#7a001d"
+violet     = "#b026ff"
+violet_dim = "#2e1065"
+purple     = "#c77dff"
+magenta    = "#ff2fd6"
+border     = "#1a0b2e"
+muted      = "#4a3b6b"
 
 [username]
 show_always = true
@@ -34,7 +34,7 @@ style_root = 'bold red'
 [hostname]
 ssh_only = false
 format = '[@$hostname]($style)'
-style = 'purple'
+style = 'bold purple'
 
 [directory]
 format = ' [$path]($style)'
@@ -49,7 +49,7 @@ format = '[$symbol$branch]($style)'
 style = 'bold magenta'
 
 [git_status]
-format = ' [$conflicted](bold red)[$deleted](bold red)[$modified](purple)[$staged](magenta)[$untracked](violet)[$ahead_behind](muted)'
+format = ' [$conflicted](bold red)[$deleted](bold red)[$modified](bold purple)[$staged](bold magenta)[$untracked](violet)[$ahead_behind](muted)'
 
 conflicted = '⚡'
 ahead      = '⇡${count}'

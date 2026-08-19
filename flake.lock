@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "bunny-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773026544,
+        "narHash": "sha256-uQO0C00yOFPWq8KEO/kEZM6tFZRc9SiXfgN7kzlwDeA=",
+        "owner": "stelcodes",
+        "repo": "bunny.yazi",
+        "rev": "71b14a3d624572f4884354c2e218296e9ece07cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stelcodes",
+        "repo": "bunny.yazi",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -122,6 +138,7 @@
     },
     "root": {
       "inputs": {
+        "bunny-yazi": "bunny-yazi",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "import-tree": "import-tree",

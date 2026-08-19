@@ -176,7 +176,7 @@
           });
 
           # --- Lock screen ---
-          "Mod+Escape".spawn-sh = "${lib.getExe config.pkgs.swaylock} -f";
+          "Mod+Escape".spawn-sh = "${noctaliaExe} msg session lock";
           #"Mod+Shift+B".spawn-sh = "${noctaliaExe} ipc call bluetooth togglePanel";
           #"Mod+Shift+W".spawn-sh = "${noctaliaExe} ipc call wifi togglePanel";
         };

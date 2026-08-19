@@ -6,6 +6,7 @@
       fd
       gcc
       nodejs
+      tree-sitter
 
       # ── LSP servers (replaces Mason auto-install) ──────────────
       lua-language-server

@@ -118,7 +118,7 @@
 
           # verify these panel names against your actual noctalia settings —
           # they mirror the working bluetooth/wifi pattern below but are unconfirmed
-          "Mod".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+          "Mod+S".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
           "Mod+A".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";  # wifi, bluetooth, notifications all live here now
           "Ctrl+Alt+Delete".spawn-sh = "${noctaliaExe} msg panel-toggle session";
 

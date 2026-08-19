@@ -9,11 +9,11 @@
 
       # ── LSP servers (replaces Mason auto-install) ──────────────
       lua-language-server
-      nil                                    # nix
-      rust-analyzer                          # rust
-      pyright                                # python
-      typescript-language-server             # typescript (top-level, pkgs-by-name)
-      vscode-langservers-extracted           # json/html/css (top-level, pkgs-by-name)
+      nil # nix
+      rust-analyzer # rust
+      pyright # python
+      typescript-language-server # typescript (top-level, pkgs-by-name)
+      vscode-langservers-extracted # json/html/css (top-level, pkgs-by-name)
       # NOTE: vscode-langservers-extracted has an open nixpkgs issue
       # (#531366) where its servers fail to launch with an ESM
       # "require is not defined" error on some unstable revisions.
@@ -21,14 +21,14 @@
       # check the issue for a fix or swap to an alternative JSON LSP.
 
       # ── formatters ──────────────────────────────────────────────
-      stylua                                 # lua
-      alejandra                              # nix
-      ruff                                   # python (formatter + linter)
-      rustfmt                                # rust
-      prettier                               # ts/json/etc (top-level)
+      stylua # lua
+      alejandra # nix
+      ruff # python (formatter + linter)
+      rustfmt # rust
+      prettier # ts/json/etc (top-level)
 
       # ── linters ─────────────────────────────────────────────────
-      eslint                                 # top-level
+      eslint # top-level
     ];
 
     programs.neovim = {
@@ -133,8 +133,8 @@
       # overrides are needed.
       "nvim/lua/plugins/disable-mason.lua".text = ''
         return {
-          { "williamboman/mason.nvim", enabled = false },
-          { "williamboman/mason-lspconfig.nvim", enabled = false },
+          { "mason-org/mason.nvim", enabled = false },
+          { "mason-org/mason-lspconfig.nvim", enabled = false },
           { "WhoIsSethDaniel/mason-tool-installer.nvim", enabled = false },
         }
       '';

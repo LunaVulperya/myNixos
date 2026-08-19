@@ -451,8 +451,8 @@
     "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor"
   },
   "noctaliaPerformance": {
-    "disableWallpaper": true,
-    "disableDesktopWidgets": true
+    "disableWallpaper": false,
+    "disableDesktopWidgets": false
   },
   "dock": {
     "enabled": true,

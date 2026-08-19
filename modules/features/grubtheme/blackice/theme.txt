@@ -20,10 +20,10 @@ terminal-height: "80%"
 terminal-border: "0"
 # ── boot entry list (inside the baked HUD panel) ──────────────
 + boot_menu {
-    left = 12%
-    top = 34%
-    width = 40%
-    height = 38%
+    left = 4%
+    top = 35%
+    width = 32%
+    height = 37%
     item_font = "Blackice Term Regular 16"
     selected_item_font = "Blackice Term Bold 16"
     item_color = "#7A5E9A"
@@ -31,9 +31,6 @@ terminal-border: "0"
     item_height = 44
     item_spacing = 4
     item_padding = 12
-    icon_width = 24
-    icon_height = 24
-    item_icon_space = 16
     selected_item_pixmap_style = "select_*.png"
     scrollbar = true
     scrollbar_width = 6
@@ -43,9 +40,9 @@ terminal-border: "0"
 # ── timeout progress bar ──────────────────────────────────────
 + progress_bar {
     id = "__timeout__"
-    left = 12%
+    left = 4%
     top = 77%
-    width = 40%
+    width = 32%
     height = 14
     show_text = false
     bar_style = "progress_frame_*.png"
@@ -54,9 +51,9 @@ terminal-border: "0"
 # ── countdown readout ─────────────────────────────────────────
 + label {
     id = "__timeout__"
-    left = 12%
+    left = 4%
     top = 81%
-    width = 40%
+    width = 32%
     align = "center"
     font = "Blackice Term Regular 14"
     color = "#FF2FD6"

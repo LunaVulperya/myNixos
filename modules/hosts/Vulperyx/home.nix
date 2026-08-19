@@ -16,6 +16,7 @@
         self.homeModules.git
         self.homeModules.fastfetch
         self.homeModules.cursor
+        self.homeModules.nvim
       ];
       home.stateVersion = "26.05";
 

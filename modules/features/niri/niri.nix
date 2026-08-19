@@ -18,7 +18,7 @@
     };
     options.fileManager = lib.mkOption {
       type = lib.types.str;
-      default = "dolphin";
+      default = "yazi";
     };
     options.browser = lib.mkOption {
       type = lib.types.str;
@@ -33,7 +33,7 @@
 
 
         input = {
-          focus-follows-mouse = {};
+          focus-follows-mouse.max-scroll-amount = "0%";
 
           keyboard = {
             xkb = {
@@ -57,7 +57,8 @@
         binds = {
           # --- App launchers (end4-style) ---
           "Mod+Return".spawn = config.terminal;
-          "Mod+E".spawn = config.fileManager;
+          "Mod+E".spawn-sh = "${config.terminal} -e ${config.fileManager}";
+          "Mod+C".spawn-sh = "${config.terminal} -e nvim";
           "Mod+W".spawn = config.browser;
 
           # --- Window management ---
@@ -65,7 +66,7 @@
           "Mod+F".maximize-column = {};
           "Mod+G".fullscreen-window = {};
           "Mod+Shift+F".toggle-window-floating = {};
-          "Mod+C".center-column = {};
+          "Mod+D".center-column = {};
 
           "Mod+H".focus-column-left = {};
           "Mod+L".focus-column-right = {};
@@ -88,27 +89,27 @@
           "Mod+Shift+J".move-window-down-or-to-workspace-down = {};
 
           # --- Workspaces ---
-          "Mod+1".focus-workspace = "w0";
-          "Mod+2".focus-workspace = "w1";
-          "Mod+3".focus-workspace = "w2";
-          "Mod+4".focus-workspace = "w3";
-          "Mod+5".focus-workspace = "w4";
-          "Mod+6".focus-workspace = "w5";
-          "Mod+7".focus-workspace = "w6";
-          "Mod+8".focus-workspace = "w7";
-          "Mod+9".focus-workspace = "w8";
-          "Mod+0".focus-workspace = "w9";
+          "Mod+1".focus-workspace = 1;
+          "Mod+2".focus-workspace = 2;
+          "Mod+3".focus-workspace = 3;
+          "Mod+4".focus-workspace = 4;
+          "Mod+5".focus-workspace = 5;
+          "Mod+6".focus-workspace = 6;
+          "Mod+7".focus-workspace = 7;
+          "Mod+8".focus-workspace = 8;
+          "Mod+9".focus-workspace = 9;
+          "Mod+0".focus-workspace = 10;
 
-          "Mod+Shift+1".move-column-to-workspace = "w0";
-          "Mod+Shift+2".move-column-to-workspace = "w1";
-          "Mod+Shift+3".move-column-to-workspace = "w2";
-          "Mod+Shift+4".move-column-to-workspace = "w3";
-          "Mod+Shift+5".move-column-to-workspace = "w4";
-          "Mod+Shift+6".move-column-to-workspace = "w5";
-          "Mod+Shift+7".move-column-to-workspace = "w6";
-          "Mod+Shift+8".move-column-to-workspace = "w7";
-          "Mod+Shift+9".move-column-to-workspace = "w8";
-          "Mod+Shift+0".move-column-to-workspace = "w9";
+          "Mod+Shift+1".move-column-to-workspace = 1;
+          "Mod+Shift+2".move-column-to-workspace = 2;
+          "Mod+Shift+3".move-column-to-workspace = 3;
+          "Mod+Shift+4".move-column-to-workspace = 4;
+          "Mod+Shift+5".move-column-to-workspace = 5;
+          "Mod+Shift+6".move-column-to-workspace = 6;
+          "Mod+Shift+7".move-column-to-workspace = 7;
+          "Mod+Shift+8".move-column-to-workspace = 8;
+          "Mod+Shift+9".move-column-to-workspace = 9;
+          "Mod+Shift+0".move-column-to-workspace = 10;
 
           # --- Quickshell/noctalia UI (end4-style panel toggles) ---
           #"Mod+S".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
@@ -117,7 +118,7 @@
 
           # verify these panel names against your actual noctalia settings —
           # they mirror the working bluetooth/wifi pattern below but are unconfirmed
-          "Mod+S".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+          "Mod".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
           "Mod+A".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";  # wifi, bluetooth, notifications all live here now
           "Ctrl+Alt+Delete".spawn-sh = "${noctaliaExe} msg panel-toggle session";
 
@@ -196,6 +197,14 @@
             geometry-corner-radius = 12;
             clip-to-geometry = true;
           }
+          {
+            matches = [ { at-startup = true; app-id = "^firefox$"; } ];
+            open-on-output = "HDMI-A-1";
+          }
+          {
+            matches = [ { at-startup = true; app-id = "^equibop$"; } ];
+            open-on-output = "HDMI-A-1";
+          }
         ];
 
         outputs = {
@@ -234,26 +243,33 @@
           }
         ];
 
-        workspaces = let
-          settings = {layout.gaps = 5;};
-        in {
-          "w0" = settings;
-          "w1" = settings;
-          "w2" = settings;
-          "w3" = settings;
-          "w4" = settings;
-          "w5" = settings;
-          "w6" = settings;
-          "w7" = settings;
-          "w8" = settings;
-          "w9" = settings;
-        };
+
+        #Old gap config
+        #workspaces = let
+        #  settings = {layout.gaps = 5;};
+        #in {
+        #  "w0" = settings;
+        #  "w1" = settings;
+        #  "w2" = settings;
+        #  "w3" = settings;
+        #  "w4" = settings;
+        #  "w5" = settings;
+        #  "w6" = settings;
+        #  "w7" = settings;
+        #  "w8" = settings;
+        #  "w9" = settings;
+        #};
 
         xwayland-satellite.path =
           lib.getExe config.pkgs.xwayland-satellite;
 
         spawn-at-startup =
           [ noctaliaExe (lib.getExe' pkgs.kdePackages.kded "kded6") ];
+
+        spawn-sh-at-startup = [
+          "${lib.getExe config.pkgs.firefox} --new-window https://web.whatsapp.com"
+          "${lib.getExe config.pkgs.equibop}"
+        ];
       };
     };
   };

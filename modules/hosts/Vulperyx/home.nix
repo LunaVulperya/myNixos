@@ -17,6 +17,8 @@
         self.homeModules.fastfetch
         self.homeModules.cursor
         self.homeModules.nvim
+        self.homeModules.yazi
+        self.homeModules.lazygit
       ];
       home.stateVersion = "26.05";
 

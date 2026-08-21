@@ -9,6 +9,16 @@
           show_hidden = true;
           sort_by = "natural";
         };
+
+        # fixes the "lags when scrolling fast" feeling — yazi was decoding
+        # and pushing an image preview to kitty for every file you skip
+        # past. image_delay debounces that so fast j/k doesn't try to
+        # render previews for files you're just flying over.
+        preview = {
+          image_delay = 100; # ms to wait before sending a preview to the terminal
+          image_filter = "triangle"; # default quality/speed balance
+          image_quality = 70; # slightly below default (75) for faster caching
+        };
       };
 
       keymap = {
@@ -23,11 +33,17 @@
             run = "shell 'lazygit' --block";
             desc = "Open lazygit here";
           }
+          {
+            on = "<C-p>";
+            run = "plugin command-palette";
+            desc = "Fuzzy-search & run any keybind";
+          }
         ];
       };
 
       plugins = {
         bunny = inputs.bunny-yazi;
+        command-palette = inputs.command-palette-yazi;
       };
 
       initLua = ''
@@ -40,6 +56,22 @@
             { key = "D", path = "~/Documents", desc = "Documents" },
           },
         })
+
+        -- persistent keybind hint bar, bottom-right of the status line.
+        -- press ~ (or F1) for the full searchable keybind list, or
+        -- <C-p> for the fuzzy command-palette plugin.
+        Status:children_add(function()
+          return ui.Line({
+            ui.Span(" ; "):fg("#0a0514"):bg("#a600ff"),
+            ui.Span("hop "):fg("#c77dff"),
+            ui.Span(" g "):fg("#0a0514"):bg("#a600ff"),
+            ui.Span("git "):fg("#c77dff"),
+            ui.Span(" ^p "):fg("#0a0514"):bg("#a600ff"),
+            ui.Span("cmds "):fg("#c77dff"),
+            ui.Span(" ~ "):fg("#0a0514"):bg("#a600ff"),
+            ui.Span("help "):fg("#c77dff"),
+          })
+        end, 500, Status.RIGHT)
       '';
 
       theme = {

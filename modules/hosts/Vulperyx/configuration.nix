@@ -141,6 +141,17 @@
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
+    # Nerd Font so kitty/yazi/lazygit icon glyphs actually render.
+    # kitty.nix already points at "JetBrainsMono Nerd Font" and
+    # lazygit.nix expects nerd font glyphs (nerdFontsVersion = "3"),
+    # but the font itself was never installed anywhere — that's why
+    # yazi was showing empty boxes instead of file/folder icons.
+    fonts.packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only # fallback glyphs for anything JetBrainsMono NF is missing
+    ];
+    fonts.fontconfig.enable = true;
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [

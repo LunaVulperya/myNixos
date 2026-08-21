@@ -19,6 +19,7 @@
         self.homeModules.nvim
         self.homeModules.yazi
         self.homeModules.lazygit
+        self.homeModules.zen-browser
       ];
       home.stateVersion = "26.05";
 

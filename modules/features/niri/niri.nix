@@ -24,13 +24,14 @@
       };
       options.browser = lib.mkOption {
         type = lib.types.str;
-        default = "firefox";
+        default = "zen-beta"; # was "firefox" — Zen is now the default browser
       };
       config = {
         settings =
           let
             #noctaliaExe = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.myNoctalia;
             noctaliaExe = "noctalia"; # provided on PATH by inputs.noctalia's home-manager module now
+            zenBrowserExe = lib.getExe inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta;
           in
           {
             prefer-no-csd = { };
@@ -208,11 +209,14 @@
                 clip-to-geometry = true;
               }
               {
+                # NOTE: app-id/title regex for Zen unconfirmed against your exact
+                # package version — check with `niri msg windows` after the first
+                # rebuild and adjust if the WhatsApp window doesn't land here.
                 matches = [
                   {
                     at-startup = true;
-                    app-id = "^firefox$";
-                    title = "WhatsApp — Mozilla Firefox$";
+                    app-id = "^zen(-beta)?$";
+                    title = "^WhatsApp";
                   }
                 ];
                 open-on-output = "HDMI-A-1";
@@ -298,7 +302,7 @@
             ];
 
             spawn-sh-at-startup = [
-              "${lib.getExe config.pkgs.firefox} --new-window https://web.whatsapp.com"
+              "${zenBrowserExe} --new-window https://web.whatsapp.com"
               "${lib.getExe config.pkgs.equibop}"
             ];
           };

@@ -20,6 +20,21 @@
       url = "github:stelcodes/bunny.yazi";
       flake = false;
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # keep it on the same nixpkgs generation as the rest of the system —
+        # otherwise it can fail to detect the nvidia GPU / WebGL context.
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    command-palette-yazi = {
+      url = "github:Mr-Ples/command-palette";
+      flake = false;
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake

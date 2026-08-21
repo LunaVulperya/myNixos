@@ -21,6 +21,15 @@
       # If jsonls/html/css LSP breaks, that's the likely cause —
       # check the issue for a fix or swap to an alternative JSON LSP.
 
+      # ── compilers / runtimes (so you can build & run from the
+      #    terminal, or via nvim's :! / <leader>r, no IDE needed) ──
+      python3 # python: `python3 script.py`
+      rustc # rust: `rustc file.rs` (cargo below for real projects)
+      cargo # rust: `cargo run` / `cargo build`
+      typescript # typescript: gives you `tsc` (nodejs above already runs .ts via ts-node/tsx if you add it, and runs .js directly)
+      # gcc above already covers C/C++
+      # nix itself is run via the `nix` CLI (already on PATH from nix.settings)
+
       # ── formatters ──────────────────────────────────────────────
       stylua # lua
       alejandra # nix
@@ -108,8 +117,60 @@
 
       "nvim/lua/plugins/theme.lua".text = ''
         return {
-          { "folke/tokyonight.nvim", opts = { style = "storm" } },
+          {
+            "folke/tokyonight.nvim",
+            opts = {
+              style = "storm",
+              -- matches kitty's background_opacity: let the terminal's
+              -- own transparency (kitty.nix -> background_opacity 0.75)
+              -- show through instead of nvim painting an opaque bg.
+              transparent = true,
+              styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+              },
+            },
+          },
           { "LazyVim/LazyVim", opts = { colorscheme = "tokyonight" } },
+        }
+      '';
+
+      "nvim/lua/plugins/transparency.lua".text = ''
+        -- Belt-and-suspenders transparency: strip background from every
+        -- highlight group a colorscheme might still paint opaque, so
+        -- nvim always matches kitty's transparent/blurred background
+        -- regardless of which colorscheme ends up active.
+        return {
+          {
+            "LazyVim/LazyVim",
+            lazy = false,
+            priority = 1000,
+            config = function()
+              local groups = {
+                "Normal",
+                "NormalNC",
+                "NormalFloat",
+                "FloatBorder",
+                "SignColumn",
+                "EndOfBuffer",
+                "MsgArea",
+                "TelescopeNormal",
+                "TelescopeBorder",
+                "NeoTreeNormal",
+                "NeoTreeNormalNC",
+                "WhichKeyFloat",
+              }
+              local function clear_bg()
+                for _, group in ipairs(groups) do
+                  vim.api.nvim_set_hl(0, group, { bg = "none" })
+                end
+              end
+              vim.api.nvim_create_autocmd("ColorScheme", {
+                callback = clear_bg,
+              })
+              clear_bg()
+            end,
+          },
         }
       '';
 

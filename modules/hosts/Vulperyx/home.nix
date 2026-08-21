@@ -25,6 +25,11 @@
 
       home.packages = with pkgs; [
         # add user-level packages here
+        zip
+        unzip
+        unrar
+        p7zip
+        fzf
       ];
 
       #programs.git = {

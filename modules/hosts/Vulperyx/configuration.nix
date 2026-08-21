@@ -68,9 +68,22 @@
     services.xserver.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
-    services.displayManager.sddm.enable = true;
+    # services.displayManager.sddm.enable = true; 
     services.desktopManager.plasma6.enable = true;
     services.displayManager.defaultSession = lib.mkForce "niri";
+    # Ly TUI login manager, purple matrix animation
+    services.displayManager.ly = {
+      enable = true;
+      x11Support = true;
+      settings = {
+        animation = "matrix";
+        cmatrix_fg = "0x00A600FF";       # purple rain, matches your yazi accent
+        cmatrix_head_col = "0x01FFFFFF"; # bright white "lead" character per column
+        bg = "0x00000000";
+        fg = "0x00A600FF";
+        border_fg = "0x00A600FF";
+      };
+    };
 
     # Configure keymap in X11
     services.xserver.xkb = {

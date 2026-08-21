@@ -24,7 +24,7 @@
       };
       options.browser = lib.mkOption {
         type = lib.types.str;
-        default = "zen-beta"; # was "firefox" — Zen is now the default browser
+        default = "firefox"; # was "firefox" — Zen is now the default browser
       };
       config = {
         settings =
@@ -215,8 +215,8 @@
                 matches = [
                   {
                     at-startup = true;
-                    app-id = "^zen(-beta)?$";
-                    title = "^WhatsApp";
+                    app-id = "^firefox$";
+                    title = "WhatsApp — Mozilla Firefox$";
                   }
                 ];
                 open-on-output = "HDMI-A-1";

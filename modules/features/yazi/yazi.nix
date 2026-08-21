@@ -43,7 +43,8 @@
 
       plugins = {
         bunny = inputs.bunny-yazi;
-        command-palette = inputs.command-palette-yazi;
+        command-palette = inputs.command-palette-yazi; 
+        compress = pkgs.yaziPlugins.compress;
       };
 
       initLua = ''

@@ -32,12 +32,10 @@
     };
 
     command-palette-yazi = {
-      url = "github:Mr-Ples/command-palette";
+      url = "github:Mr-Ples/command-palette.yazi";
       flake = false;
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake
-    {inherit inputs;}
-    (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
